@@ -7,19 +7,37 @@ from sklearn.preprocessing import StandardScaler
 
 data = pd.read_csv('data.csv')
 
-temp = x.sub(x.mean())
-x_scaled = temp.div(x.std())
+# Standardisation 
+# La standardisation (aussi appeléé normalisation) consiste à soustraire la moyenne et diviser par l'écart-type
+# La distribution des données est ainsi centrée réduite (moyenne = 0, écart-type = 1)
 
-pca = PCA(n_components=3)
-pca.fit(x_scaled)
+X = df(df.columns[0:4])
+y = df["nom"]
+temp = X.sub(X.mean())
+X_scaled = temp.div(X.std())
 
-pca_res = pca.fit_transform(x_scaled)
+# Entrainement du modèle
+# Nous appelons X_scaled le jeu de valeur standardisées au quel nous appliquerons l'ACP. Dans l'exercice [...]
+# le nombre de composantes conservées est fixé à 3, vous changerez cette valeur en fonction de vos besoins.
 
+n_components = 3
+pca = PCA(n_components=n_components)
+pca.fit(X_scaled)
 
-//4
-biplot(score=pca_res[:,0:2],
-       coeff=np.transpose(pca.components_[0:2, :]),
-       cat=y,
-       cmap="viridis",
-       coeff_labels=list(X.columns))
-plt.show()
+# pca.fit permet d'obtenir la modélisation de l'ACP. Afin d'obtenir les résultats pour les individus, il [...]
+#fonctions fit() et transform() de l'ACP. Une autre possibilité est d'utiliser la fonction fit_transform() réalisé automatiquement la combinaison des deux.
+
+pca_res = pca.fit_transform(X_scaled)
+
+# Calcul des valeurs propres
+# Parmi l'ensemble des valeurs de la PCA vous retrouverez :
+# - Les valeurs propres des composantes : pca.singular_values_
+# - Les pourcentages de variance expliq
+
+# - ration de variance expliquée cumulée
+
+eig = pd.DataFrame({
+
+})
+
+# Visualisation des valeurs propres
