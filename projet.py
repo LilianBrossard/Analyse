@@ -132,9 +132,11 @@ def biplot(pca=[],x=None,y=None,components=[0,1],score=None,\
     plt.show()
 
 #3.2
+coeff_labels = list(numeric_data.columns)
 biplot(score=pca_res[:, 0:2],
-       coeff=np.transpose(pca.components_[0:2, :]),
-       cat=data["player_tag"], density=False)
+    coeff=np.transpose(pca.components_[0:2, :]),
+    coeff_labels=coeff_labels,
+    cat=data["player_tag"], density=False, bigdata=10000)
 plt.show()
 
 # # Standardisation 
