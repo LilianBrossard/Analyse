@@ -14,15 +14,15 @@ data = pd.read_csv('output.csv')
 numeric_data = data.select_dtypes(include="number")
 temp = numeric_data.sub(numeric_data.mean())
 data_scaled = temp.div(numeric_data.std())
-
-pca=PCA(n_components=3)
+n_components=5
+pca=PCA(n_components=n_components)
 pca.fit(data_scaled)
 
 pca_res = pca.fit_transform(data_scaled)
 
 #3.1
 eig = pd.DataFrame({
-    "Dimension": [f"Dim{str(x+1)}" for x in range(3)],
+    "Dimension": [f"Dim{str(x+1)}" for x in range(n_components)],
     "Valeur propre": pca.explained_variance_,
     "% valeur propre": np.round(pca.explained_variance_ratio_ * 100, 2),
     "% cum. valeur prop.": np.round(np.cumsum(pca.explained_variance_ratio_) * 100, 2)
@@ -144,13 +144,16 @@ data_scaled_np = data_scaled.to_numpy()
 pca_df = pd.DataFrame({
     "Dim1": data_scaled_np[:, 0],
     "Dim2": data_scaled_np[:, 1],
-    "goodanswer": data["goodanswer"]
+    "winner": data["winner"]
 })
 pca_df.plot.scatter("Dim1", "Dim2")
 plt.xlabel("Dimension 1 (%)")
 plt.ylabel("Dimension 2 (%)")
 plt.title("Premier plan factoriel (%)")
 plt.show()
+
+print(len(data_scaled_np[:, 0]))
+print(data_scaled_np.shape)
 
 # palette = plt.get_cmap("Dark2")
 # couleurs = dict(zip(pca_df["goodanswer"].drop_duplicates(),
