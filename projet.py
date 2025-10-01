@@ -152,23 +152,23 @@ plt.ylabel("Dimension 2 (%)")
 plt.title("Premier plan factoriel (%)")
 plt.show()
 
-print(len(data_scaled_np[:, 0]))
-print(data_scaled_np.shape)
+# print(len(data_scaled_np[:, 0]))
+# print(data_scaled_np.shape)
 
-# palette = plt.get_cmap("Dark2")
-# couleurs = dict(zip(pca_df["goodanswer"].drop_duplicates(),
-# palette(range(10))))
-# position = dict(zip(couleurs.keys(), range(10)))
+palette = plt.get_cmap("Dark2")
+couleurs = dict(zip(pca_df["winner"].drop_duplicates(),
+palette(range(10))))
+position = dict(zip(couleurs.keys(), range(10)))
 
-# pca_df.plot.scatter("Dim1", "Dim2",
-# c = [couleurs[p] for p in pca_df["goodanswer"]])
-# for cont, couleur in couleurs.items():
-#     plt.scatter(3, position[cont] / 3 + 2.15, c=[couleur], s=20)
-#     plt.text(3.2, position[cont] / 3 + 2, cont)
-# plt.xlabel("Dimension 1 (%)")
-# plt.ylabel("Dimension 2 (%)")
-# plt.title("Premier plan factoriel (%)")
-# plt.show()
+pca_df.plot.scatter("Dim1", "Dim2",
+c = [couleurs[p] for p in pca_df["winner"]])
+for cont, couleur in couleurs.items():
+    plt.scatter(3, position[cont] / 3 + 2.15, c=[couleur], s=20)
+    plt.text(3.2, position[cont] / 3 + 2, cont)
+plt.xlabel("Dimension 1 (%)")
+plt.ylabel("Dimension 2 (%)")
+plt.title("Premier plan factoriel (%)")
+plt.show()
 
 # # Standardisation 
 # # La standardisation (aussi appeléé normalisation) consiste à soustraire la moyenne et diviser par l'écart-type
