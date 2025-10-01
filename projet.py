@@ -139,6 +139,34 @@ biplot(score=pca_res[:, 0:2],
     cat=data["player_tag"], density=False, bigdata=10000)
 plt.show()
 
+#3.3
+data_scaled_np = data_scaled.to_numpy()
+pca_df = pd.DataFrame({
+    "Dim1": data_scaled_np[:, 0],
+    "Dim2": data_scaled_np[:, 1],
+    "goodanswer": data["goodanswer"]
+})
+pca_df.plot.scatter("Dim1", "Dim2")
+plt.xlabel("Dimension 1 (%)")
+plt.ylabel("Dimension 2 (%)")
+plt.title("Premier plan factoriel (%)")
+plt.show()
+
+# palette = plt.get_cmap("Dark2")
+# couleurs = dict(zip(pca_df["goodanswer"].drop_duplicates(),
+# palette(range(10))))
+# position = dict(zip(couleurs.keys(), range(10)))
+
+# pca_df.plot.scatter("Dim1", "Dim2",
+# c = [couleurs[p] for p in pca_df["goodanswer"]])
+# for cont, couleur in couleurs.items():
+#     plt.scatter(3, position[cont] / 3 + 2.15, c=[couleur], s=20)
+#     plt.text(3.2, position[cont] / 3 + 2, cont)
+# plt.xlabel("Dimension 1 (%)")
+# plt.ylabel("Dimension 2 (%)")
+# plt.title("Premier plan factoriel (%)")
+# plt.show()
+
 # # Standardisation 
 # # La standardisation (aussi appeléé normalisation) consiste à soustraire la moyenne et diviser par l'écart-type
 # # La distribution des données est ainsi centrée réduite (moyenne = 0, écart-type = 1)
