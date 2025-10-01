@@ -4,11 +4,15 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 from matplotlib import cm
 from scipy.spatial import ConvexHull
-import seaborn
+import seaborn as sns
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
 data = pd.read_csv('output.csv')
+
+### Visualisation des données
+sns.set_theme(rc={"figure.figsize": (12, 12)})
+sns.pairplot(data, hue="winner")
 
 #3 ACP
 numeric_data = data.select_dtypes(include="number")
@@ -152,10 +156,10 @@ plt.ylabel("Dimension 2 (%)")
 plt.title("Premier plan factoriel (%)")
 plt.show()
 
-# palette = plt.get_cmap("Dark2")
-# couleurs = dict(zip(pca_df["goodanswer"].drop_duplicates(),
-# palette(range(10))))
-# position = dict(zip(couleurs.keys(), range(10)))
+palette = plt.get_cmap("Dark2")
+couleurs = dict(zip(pca_df["goodanswer"].drop_duplicates(),
+palette(range(10))))
+position = dict(zip(couleurs.keys(), range(10)))
 
 # pca_df.plot.scatter("Dim1", "Dim2",
 # c = [couleurs[p] for p in pca_df["goodanswer"]])
